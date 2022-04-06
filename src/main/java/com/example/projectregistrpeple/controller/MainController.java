@@ -1,5 +1,10 @@
 package com.example.projectregistrpeple.controller;
+import com.example.projectregistrpeple.dto.ResponseUser;
+import com.example.projectregistrpeple.dto.Status;
+import com.example.projectregistrpeple.dto.StatusResponse;
+import com.example.projectregistrpeple.service.userservice.UserServiceInterface;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -16,34 +21,49 @@ import java.util.Map;
 @Controller
 @RequiredArgsConstructor
 public class MainController {
+    @Autowired
+    UserServiceInterface userService;
+
+    @GetMapping("/") // авторизация вход в приложение
+    public String mainmenu (ResponseUser responseUser) {
+        return "mainmenu";}
 
 
-    @GetMapping("")
-    public String startMenu() {
-        return "modelstart";
-    }
+    @GetMapping("/entry") // авторизация вход в приложение
+    public String entry(ResponseUser responseUser) {
+        return "entry";}
 
-
-    @GetMapping("/main")
-    public String registraction(Map<String, Object> model ) {
+    @GetMapping("/registration")
+    public String registration(Map<String, Object> model ) {
         model.put("message", " ");
-        return "main";
-    }
-
-
+        return "registration";}
 
     @Transactional
-    @RequestMapping("/login")
+    @PostMapping("/registration") // API добавить пользователя
+    public String registration(ResponseUser responseUser, Map<String, Object> model) {
+
+        System.out.println("PFFF");
+
+        if (userService.findByUsers(responseUser.getLogin()).isEmpty()) {
+            userService.AddUser(responseUser);
+            return "entry";}
+        model.put("message", "Такой пользователь уже есть ");
+        return "entry";}
+
+
+    @GetMapping("/authorization") // авторизация вход в приложение
+    public String authorization(ResponseUser responseUser) {
+        return "authorization";}
+
+
+    @RequestMapping("/authorization")
     public String getLogin(@RequestParam(value = "error", required = false) String error,
                            @RequestParam(value = "logout", required = false) String logout,
                            Model model) {
         model.addAttribute("error", error != null);
         model.addAttribute("logout", logout != null);
-        return "testing";
+        return "authorization";
     }
-
-
-
 
 
 
@@ -58,3 +78,15 @@ public class MainController {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
