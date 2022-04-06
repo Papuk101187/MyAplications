@@ -31,7 +31,9 @@ public class MainController {
     }
 
 
-    @RequestMapping("/testing")
+
+    @Transactional
+    @RequestMapping("/login")
     public String getLogin(@RequestParam(value = "error", required = false) String error,
                            @RequestParam(value = "logout", required = false) String logout,
                            Model model) {
@@ -39,6 +41,12 @@ public class MainController {
         model.addAttribute("logout", logout != null);
         return "testing";
     }
+
+
+
+
+
+
 
 
 
