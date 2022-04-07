@@ -1,0 +1,15 @@
+
+
+
+
+###
+POST http://localhost:8080/registration
+Content-Type: application/json
+Authentication: Bearer frgrfggbugfvjgbightgthbg
+
+{
+  "login": "Mykif",
+  "password":"238945",
+  "type": "customer_test"
+}
+

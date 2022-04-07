@@ -20,6 +20,9 @@ public class MyUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 
 
+        System.out.println("MyUserDetailsService.loadUserByUsername");
+
+
         return userService.findByUsers(login)
                 .map(user -> new MyUserDetails(user))
                 .orElseThrow(() -> new AuthenticationCredentialsNotFoundException("User not found "));

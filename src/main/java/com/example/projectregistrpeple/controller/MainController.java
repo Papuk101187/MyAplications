@@ -24,10 +24,9 @@ public class MainController {
     @Autowired
     UserServiceInterface userService;
 
-    @GetMapping("/") // авторизация вход в приложение
+    @GetMapping("/") // Главное меню
     public String mainmenu (ResponseUser responseUser) {
         return "mainmenu";}
-
 
     @GetMapping("/entry") // авторизация вход в приложение
     public String entry(ResponseUser responseUser) {
@@ -38,12 +37,16 @@ public class MainController {
         model.put("message", " ");
         return "registration";}
 
+
     @Transactional
-    @PostMapping("/registration") // API добавить пользователя
+    @PostMapping("/registration")
     public String registration(ResponseUser responseUser, Map<String, Object> model) {
 
-        System.out.println("PFFF");
+        System.out.println("responseUser.getLogin "+responseUser.getLogin());
+        System.out.println("responseUser.getType "+responseUser.getType());
+        System.out.println("responseUser.getPassword "+responseUser.getPassword());
 
+        System.out.println("PFFF");
         if (userService.findByUsers(responseUser.getLogin()).isEmpty()) {
             userService.AddUser(responseUser);
             return "entry";}
@@ -51,15 +54,14 @@ public class MainController {
         return "entry";}
 
 
-    @GetMapping("/authorization") // авторизация вход в приложение
+    @GetMapping("/authorization")
     public String authorization(ResponseUser responseUser) {
         return "authorization";}
 
-
     @RequestMapping("/authorization")
     public String getLogin(@RequestParam(value = "error", required = false) String error,
-                           @RequestParam(value = "logout", required = false) String logout,
-                           Model model) {
+    @RequestParam(value = "logout", required = false) String logout,
+     Model model) {
         model.addAttribute("error", error != null);
         model.addAttribute("logout", logout != null);
         return "authorization";

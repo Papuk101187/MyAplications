@@ -15,6 +15,5 @@ public class ResponseUser {
     String login;
     String password;
     String type;
-    
 
 }
