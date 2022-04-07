@@ -55,7 +55,7 @@ public class MainController {
 
 
     @GetMapping("/authorization")
-    public String authorization(ResponseUser responseUser) {
+    public String authorization() {
         return "authorization";}
 
     @RequestMapping("/authorization")
