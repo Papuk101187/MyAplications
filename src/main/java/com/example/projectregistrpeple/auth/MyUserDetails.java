@@ -13,7 +13,6 @@ import java.util.stream.Stream;
 @AllArgsConstructor
 public class MyUserDetails implements org.springframework.security.core.userdetails.UserDetails {
 
-
     Users users;
 
   //  @Override

@@ -1,11 +1,15 @@
+
+
 ###
-POST http://localhost:8080/registration
+POST http://localhost:8080/authorization
 Content-Type: application/json
 Authentication: Bearer frgrfggbugfvjgbightgthbg
 
 {
-  "login": "Mykif",
-  "password":"238945",
-  "type": "customer_test"
+  "username": "oleg",
+  "password":"1"
 }
+
+
+
 

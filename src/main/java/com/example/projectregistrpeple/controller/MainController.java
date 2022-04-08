@@ -21,6 +21,7 @@ import java.util.Map;
 @Controller
 @RequiredArgsConstructor
 public class MainController {
+
     @Autowired
     UserServiceInterface userService;
 
@@ -37,7 +38,6 @@ public class MainController {
         model.put("message", " ");
         return "registration";}
 
-
     @Transactional
     @PostMapping("/registration")
     public String registration(ResponseUser responseUser, Map<String, Object> model) {
@@ -53,11 +53,11 @@ public class MainController {
         model.put("message", "Такой пользователь уже есть ");
         return "entry";}
 
-
     @GetMapping("/authorization")
     public String authorization() {
         return "authorization";}
 
+    @Transactional
     @RequestMapping("/authorization")
     public String getLogin(@RequestParam(value = "error", required = false) String error,
     @RequestParam(value = "logout", required = false) String logout,
