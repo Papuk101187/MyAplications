@@ -1,19 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sweater</title>
-</head>
-<body>
-
-
-<h1>  ЛОГИНКА ПРОШЛА УСПЕШНО   </h1>
-
-<div>Список сообщений</div>
+<#import "macros/forms.ftl" as f>
+<#import "macros/page.ftl" as p>
 
 
 
+<!-- страница для продавца  -->
+<#if (usertype=="seller")>
+    <@p.seller>
+    </@p.seller>
+</#if>
 
+<!-- страница для клиента  -->
 
-</body>
-</html>
+<#if (usertype=="customer")>
+    <@p.customer>
+    </@p.customer>
+</#if>

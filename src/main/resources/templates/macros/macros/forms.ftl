@@ -1,3 +1,5 @@
+<!-- регистрация пользователя  -->
+
 <#macro registration path>
 <form action="${path}" method="post">
     <div><label> Login : <input type="text" name="login" required /> </label></div>
@@ -7,6 +9,9 @@
 </form>
 </#macro>
 
+
+
+<!-- авторизация пользователя  -->
 <#macro authorization>
     <form method="post">
         <div class="form-group">
@@ -22,3 +27,4 @@
         <button type="submit" class="btn btn-default">Log in</button>
     </form>
 </#macro>
+
